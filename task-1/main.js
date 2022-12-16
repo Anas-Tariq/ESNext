@@ -73,7 +73,6 @@ console.log(countries3);
 /************************************ Task 4 ************************************/
 
 /************************************ Task 5 ************************************/
-let selectStudent = document.getElementById("student");
 
 let studentGrades = new Map();
 studentGrades.set("Anas", [
@@ -146,11 +145,18 @@ studentGrades.set("Clever", [
 ]);
 console.log(studentGrades);
 
+let selectStudent = document.getElementById("student");
+let gradesContiner = document.getElementById("grades-container");
+let printGrade = document.getElementById("print-grade");
+let newOption;
+
 for (let [studentName, studentCourse] of studentGrades) {
-    // let addOption = document.createElement("option");
-    // addOption.innerText = studentName;
-    // addOption.value = studentName;
-    // addOption.appendChild(selectStudent);
+    console.log(studentName);
+    newOption = document.createElement("option");
+    newOption.value = studentName;
+    newOption.innerText = studentName;
+    selectStudent.appendChild(newOption);
+
     console.log(`${studentName}`);
     for (let j = 0; j < studentCourse.length; j++) {
         console.log(`Has gained ${studentCourse[j].grade} in ${studentCourse[j].courseName}`);
@@ -164,5 +170,18 @@ studentGrades.forEach((student) => {
     }
 });
 
+console.log(selectStudent);
+
+printGrade.addEventListener("click", (e) => {
+    // for (let [studentName, studentCourse] of studentGrades) {
+    //     console.log(studentGrades.get(newOption.value));
+    // }
+
+    let anasGrades = studentGrades.get("Anas");
+    for (let i = 0; i < anasGrades.length; i++) {
+        gradesContiner.innerHTML += `${anasGrades[i].courseName} ==> ${anasGrades[i].grade} </br>`;
+    }
+});
+console.log(newOption.value);
 console.log(studentGrades.keys());
 /************************************ Task 5 ************************************/
